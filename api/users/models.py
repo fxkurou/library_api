@@ -46,9 +46,6 @@ class User(AbstractUser):
         first_name (str): The first name of the user.
         last_name (str): The last name of the user.
         email (str): The email of the user.
-        phone (str): The phone number of the user.
-        user_type (str): The type of the user.
-        favorite_categories (ManyToManyField): The favorite categories of the user.
     """
 
     first_name = models.CharField(_("first name"), max_length=150)

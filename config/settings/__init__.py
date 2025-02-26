@@ -20,10 +20,26 @@ from .base import (
     TEMPLATES,
 )
 
+from .celery_broker import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
+from .database import DATABASES
+from .caching import REDIS_PORT, REDIS_HOST, REDIS_DB, CACHES
+from .cors import CORS_ALLOW_ORIGIN
+from .email import (
+    EMAIL_BACKEND,
+    EMAIL_HOST,
+    EMAIL_PORT,
+    EMAIL_USE_TLS,
+    EMAIL_HOST_USER,
+    EMAIL_HOST_PASSWORD,
+    DEFAULT_FROM_EMAIL,
+)
+
+
 __all__ = [
     "BASE_DIR",
     "SECRET_KEY",
     "DEBUG",
+    "DATABASES",
     "ALLOWED_HOSTS",
     "INSTALLED_APPS",
     "MIDDLEWARE",
@@ -40,4 +56,18 @@ __all__ = [
     "MEDIA_URL",
     "MEDIA_ROOT",
     "TEMPLATES",
+    "CELERY_BROKER_URL",
+    "CELERY_RESULT_BACKEND",
+    "REDIS_PORT",
+    "REDIS_HOST",
+    "REDIS_DB",
+    "CACHES",
+    "CORS_ALLOW_ORIGIN",
+    "EMAIL_BACKEND",
+    "EMAIL_HOST",
+    "EMAIL_PORT",
+    "EMAIL_USE_TLS",
+    "EMAIL_HOST_USER",
+    "EMAIL_HOST_PASSWORD",
+    "DEFAULT_FROM_EMAIL",
 ]

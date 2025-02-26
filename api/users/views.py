@@ -21,7 +21,7 @@ class UserRegisterView(generics.CreateAPIView):
     Custom user registration view.
     This view is used to register a new user.
     The user profile data is returned in the response.
-    The user profile data includes the user's first name, last name, email, and phone number.
+    The user profile data includes the user's first name, last name, email.
     """
 
     permission_classes = [permissions.AllowAny]

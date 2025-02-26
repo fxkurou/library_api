@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     # Local apps
     "api.users.apps.UsersConfig",
+    "api.library.apps.LibraryConfig",
 ]
 
 MIDDLEWARE = [
