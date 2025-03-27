@@ -28,7 +28,7 @@ jobs:
       - name: Add Poetry to PATH
         run: echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Install Dependencies
-        run: poetry install
+        run: poetry install --no-root
       - name: Set environment variables
         run: |
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
