@@ -16,8 +16,11 @@ class Book(models.Model):
 
     title = models.CharField(_("title"), max_length=255)
     author = models.CharField(_("author"), max_length=255)
+    slug = models.SlugField(_("slug"), max_length=255, unique=True)
     publication_date = models.DateField(_("publication date"))
     stock = models.PositiveIntegerField(_("stock"), default=0)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name = _("Book")
@@ -29,9 +32,9 @@ class Book(models.Model):
 
 
 class BorrowRecord(models.Model):
-    borrowed_at = models.DateTimeField(auto_now_add=True)
-    return_by = models.DateField()
-    returned_at = models.DateTimeField(null=True, blank=True)
+    borrowed_at = models.DateTimeField(_("borrowed at"), auto_now_add=True)
+    return_by = models.DateField(_("return by"))
+    returned_at = models.DateTimeField(_("returned at"), null=True, blank=True)
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
@@ -44,6 +47,8 @@ class BorrowRecord(models.Model):
         related_name="borrowed_books",
         verbose_name=_("book"),
     )
+
+    objects = models.Manager()
 
     @property
     def is_overdue(self):

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "rest_framework_simplejwt",
-    "drf_yasg",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
     # Local apps
     "api.users.apps.UsersConfig",
     "api.library.apps.LibraryConfig",

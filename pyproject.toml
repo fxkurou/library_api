@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "inforce-test-task-2"
+name = "library-api"
 version = "0.1.0"
 description = ""
 authors = ["Little-Wretch <nazarr914@gmail.com>"]
@@ -18,7 +18,8 @@ celery = {extras = ["redis"], version = "^5.4.0"}
 pre-commit = "^4.1.0"
 factory-boy = "^3.3.3"
 djangorestframework-simplejwt = "^5.4.0"
-drf-yasg = "^1.21.8"
+drf-spectacular = {extras = ["sidecar"], version = "^0.28.0"}
+django-filter = "^25.1"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -1,36 +1,9 @@
-from typing import Any, Dict
-
 from rest_framework import serializers
-from rest_framework.authtoken.models import Token
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from api.users.models import User
 
 
-class BaseTokenObtainPairSerializer(TokenObtainPairSerializer):
-    """
-    Custom token serializer that includes user email in the response.
-    """
-
-    @classmethod
-    def get_token(cls, user: User) -> Token:
-        """
-        Add user email to the token response.
-        """
-        token = super(BaseTokenObtainPairSerializer, cls).get_token(user)
-        token["email"] = user.email
-        return token
-
-    def validate(self, attrs: Dict[str, Any]) -> Dict[str, str]:
-        """
-        Add user email to the response.
-        """
-        data = super().validate(attrs)
-        data["email"] = self.user.email
-        return data
-
-
-class UserBaseSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     """
     Base user serializer.
     """
@@ -42,48 +15,41 @@ class UserBaseSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "email",
+            "phone",
+            "password",
             "date_joined",
         ]
         read_only_fields = [
             "id",
             "date_joined",
         ]
-
-
-class UserRegisterSerializer(UserBaseSerializer):
-    """
-    User serializer for registration.
-    """
-
-    password = serializers.CharField(write_only=True)
-
-    class Meta:
-        model = UserBaseSerializer.Meta.model
-        fields = UserBaseSerializer.Meta.fields + ["password"]
+        extra_kwargs = {
+            "password": {
+                "write_only": True,
+            }
+        }
 
     def create(self, validated_data):
         """
-        Create user.
+        Create a new user.
+
+        :param validated_data: dictionary containing user data.
+        :return: created user object.
         """
-        email = validated_data.get("email")
-        user = UserBaseSerializer.Meta.model.objects.create(username=email, **validated_data)
+        email = validated_data.get("email", None)
+        user = User.objects.create(username=email, **validated_data)
         user.set_password(validated_data["password"])
-        user.save()
         return user
-
-
-class UserDetailSerializer(UserBaseSerializer):
-    """
-    User detail serializer.
-    """
-
-    class Meta:
-        model = UserBaseSerializer.Meta.model
-        fields = UserBaseSerializer.Meta.fields
 
     def update(self, instance, validated_data):
         """
-        Update user.
-        """
+        Update a user.
 
+        :param instance: instance of the user object.
+        :param validated_data: dictionary containing user data.
+        :return: updated user object.
+        """
+        if "password" in validated_data:
+            password = validated_data.pop("password")
+            instance.set_password(password)
         return super().update(instance, validated_data)

@@ -1,73 +1,8 @@
-from .base import (
-    BASE_DIR,
-    SECRET_KEY,
-    DEBUG,
-    ALLOWED_HOSTS,
-    INSTALLED_APPS,
-    MIDDLEWARE,
-    ROOT_URLCONF,
-    WSGI_APPLICATION,
-    LANGUAGE_CODE,
-    AUTH_USER_MODEL,
-    AUTH_PASSWORD_VALIDATORS,
-    TIME_ZONE,
-    USE_I18N,
-    USE_TZ,
-    STATIC_URL,
-    STATIC_ROOT,
-    MEDIA_URL,
-    MEDIA_ROOT,
-    TEMPLATES,
-)
-
-from .celery_broker import CELERY_BROKER_URL, CELERY_RESULT_BACKEND
-from .database import DATABASES
-from .caching import REDIS_PORT, REDIS_HOST, REDIS_DB, CACHES
-from .cors import CORS_ALLOW_ORIGIN
-from .email import (
-    EMAIL_BACKEND,
-    EMAIL_HOST,
-    EMAIL_PORT,
-    EMAIL_USE_TLS,
-    EMAIL_HOST_USER,
-    EMAIL_HOST_PASSWORD,
-    DEFAULT_FROM_EMAIL,
-)
-
-
-__all__ = [
-    "BASE_DIR",
-    "SECRET_KEY",
-    "DEBUG",
-    "DATABASES",
-    "ALLOWED_HOSTS",
-    "INSTALLED_APPS",
-    "MIDDLEWARE",
-    "ROOT_URLCONF",
-    "WSGI_APPLICATION",
-    "LANGUAGE_CODE",
-    "AUTH_USER_MODEL",
-    "AUTH_PASSWORD_VALIDATORS",
-    "TIME_ZONE",
-    "USE_I18N",
-    "USE_TZ",
-    "STATIC_URL",
-    "STATIC_ROOT",
-    "MEDIA_URL",
-    "MEDIA_ROOT",
-    "TEMPLATES",
-    "CELERY_BROKER_URL",
-    "CELERY_RESULT_BACKEND",
-    "REDIS_PORT",
-    "REDIS_HOST",
-    "REDIS_DB",
-    "CACHES",
-    "CORS_ALLOW_ORIGIN",
-    "EMAIL_BACKEND",
-    "EMAIL_HOST",
-    "EMAIL_PORT",
-    "EMAIL_USE_TLS",
-    "EMAIL_HOST_USER",
-    "EMAIL_HOST_PASSWORD",
-    "DEFAULT_FROM_EMAIL",
-]
+from .base import *  # noqa
+from .email import *  # noqa
+from .logging import *  # noqa
+from .celery_broker import *  # noqa
+from .caching import *  # noqa
+from .drf import *  # noqa
+from .cors import *  # noqa
+from .database import *  # noqa
